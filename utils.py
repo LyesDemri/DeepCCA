@@ -64,3 +64,14 @@ def load_pickle(f):
         ret = thepickle.load(f)
 
     return ret
+    
+def non_saturating_activation(x,iters=6):
+    """
+    calculates the values for the non-saturating activation function provided in Andrew et al. (2013)
+    x: input value for which s(x) must be calculated
+    iters: number of iterations. the default value of 6 seems like a reasonable compromise between accuracy and performance
+    """
+    y=x;
+    for n in range(iters):
+        y=((2*(np.power(y,3)/3) + x)/(np.power(y,2) + 1));
+    return y
